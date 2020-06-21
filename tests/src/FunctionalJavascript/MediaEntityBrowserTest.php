@@ -14,6 +14,12 @@ use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
 class MediaEntityBrowserTest extends WebDriverTestBase {
 
   use MediaTypeCreationTrait;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'stable';
+
   /**
    * Modules to install.
    *
@@ -55,7 +61,7 @@ class MediaEntityBrowserTest extends WebDriverTestBase {
     $this->assertSession()->assertWaitOnAjaxRequest();
 
     $this->assertSession()->elementExists('css', '.view-media-entity-browser-view');
-    $this->assertSession()->elementExists('css', '.image-style-media-entity-browser-thumbnail');
+    $this->assertSession()->elementNotExists('css', '.image-style-media-entity-browser-thumbnail');
 
     $this->assertSession()->elementNotExists('css', '.views-row.checked');
     $this->getSession()->getPage()->find('css', '.views-row')->press();

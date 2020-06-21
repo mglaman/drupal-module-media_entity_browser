@@ -14,6 +14,12 @@ use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
 class MediaEntityBrowserMediaLibraryTest extends WebDriverTestBase {
 
   use MediaTypeCreationTrait;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'stable';
+
   /**
    * Modules to install.
    *
@@ -57,7 +63,6 @@ class MediaEntityBrowserMediaLibraryTest extends WebDriverTestBase {
     $this->assertSession()->assertWaitOnAjaxRequest();
 
     $this->assertSession()->elementExists('css', '.media-library-view');
-    $this->assertSession()->elementExists('css', '.media-library-item__preview');
 
     $this->assertSession()->elementNotExists('css', '.js-click-to-select.checked');
     $this->getSession()->getPage()->find('css', '.js-click-to-select input[type=checkbox]')->press();
